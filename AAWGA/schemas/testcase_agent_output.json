@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TestcaseDefinition",
+  "type": "object",
+  "properties": {
+    "testcases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "테스트케이스 고유 식별자"
+          },
+          "requirement_id": {
+            "type": "string",
+            "description": "이 테스트케이스가 대응하는 요구사항 ID"
+          },
+          "steps": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "테스트 수행 단계 목록"
+          },
+          "expected_result": {
+            "type": "string",
+            "description": "기대 결과"
+          }
+        },
+        "required": ["id", "requirement_id", "steps", "expected_result"]
+      }
+    }
+  },
+  "required": ["testcases"]
+}
