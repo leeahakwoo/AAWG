@@ -1,7 +1,12 @@
+openapi: 3.0.3
+info:
+  title: AAWGA Agent API
+  version: 1.0.0
+
 paths:
   /requirements:
     post:
-      summary: "업로드된 사업계획서에서 요구사항 추출"
+      summary: "사업계획서에서 요구사항 추출"
       requestBody:
         required: true
         content:
@@ -15,6 +20,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RequirementDefinition'
+
 components:
   schemas:
     RequirementAgentInput:
