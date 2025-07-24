@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TraceabilityDefinition",
+  "type": "object",
+  "properties": {
+    "traceability_matrix": {
+      "type": "array",
+      "description": "요구사항–테스트케이스 추적성 매트릭스",
+      "items": {
+        "type": "object",
+        "properties": {
+          "requirement_id": { "type": "string" },
+          "testcase_ids": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": ["requirement_id", "testcase_ids"]
+      }
+    }
+  },
+  "required": ["traceability_matrix"]
+}
