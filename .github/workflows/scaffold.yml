@@ -1,0 +1,72 @@
+name: Scaffold AAWGA Structure
+
+# 수동 트리거
+on:
+  workflow_dispatch:
+
+jobs:
+  scaffold:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 레포 클론
+      - uses: actions/checkout@v3
+
+      # 폴더·파일 생성
+      - name: Create directory structure
+        run: |
+          mkdir -p AAWGA/.github/workflows
+          mkdir -p AAWGA/docs
+          mkdir -p AAWGA/streamlit_app/pages
+          mkdir -p AAWGA/streamlit_app/components
+          mkdir -p AAWGA/streamlit_app/utils
+          mkdir -p AAWGA/backend/routers
+          mkdir -p AAWGA/backend/services
+          mkdir -p AAWGA/agents
+          mkdir -p AAWGA/models
+          mkdir -p AAWGA/scripts
+          mkdir -p AAWGA/tests
+
+          # 최상위 파일
+          touch AAWGA/.github/workflows/ci.yml
+          touch AAWGA/docs/architecture.md
+          touch AAWGA/docs/requirements.md
+          touch AAWGA/docs/usage.md
+          touch AAWGA/streamlit_app/main.py
+          touch AAWGA/streamlit_app/pages/home.py
+          touch AAWGA/streamlit_app/pages/upload.py
+          touch AAWGA/streamlit_app/pages/feedback.py
+          touch AAWGA/streamlit_app/components/logo.py
+          touch AAWGA/streamlit_app/utils/spec_loader.py
+          touch AAWGA/backend/app.py
+          touch AAWGA/backend/routers/requirements.py
+          touch AAWGA/backend/routers/testcases.py
+          touch AAWGA/backend/routers/traceability.py
+          touch AAWGA/backend/services/rag_search.py
+          touch AAWGA/agents/base_agent.py
+          touch AAWGA/agents/requirement_agent.py
+          touch AAWGA/agents/testcase_agent.py
+          touch AAWGA/agents/traceability_agent.py
+          touch AAWGA/models/schemas.py
+          touch AAWGA/models/db_models.py
+          touch AAWGA/scripts/deploy.sh
+          touch AAWGA/scripts/docker_build.sh
+          touch AAWGA/tests/test_streamlit.py
+          touch AAWGA/tests/test_api.py
+          touch AAWGA/tests/test_agents.py
+          touch AAWGA/.env.example
+          touch AAWGA/.gitignore
+          touch AAWGA/Dockerfile
+          touch AAWGA/requirements.txt
+          touch AAWGA/README.md
+
+      # 커밋 & 푸시
+      - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Scaffold initial AAWGA repo structure"
+          git push
