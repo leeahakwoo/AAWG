@@ -39,9 +39,64 @@ paths:
                         description: "이메일 기반 회원가입 및 OAuth 소셜 로그인 지원"
                         priority: "Medium"
 
+  /testcases:
+    post:
+      summary: "요구사항 목록으로부터 테스트케이스 생성"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestcaseAgentInput'
+            examples:
+              sample-input:
+                summary: "요구사항 샘플"
+                value:
+                  requirements:
+                    - id: "REQ-001"
+                      title: "유저 로그인 기능"
+                      description: "이메일/비밀번호를 통한 로그인 지원"
+                      priority: "High"
+                    - id: "REQ-002"
+                      title: "회원가입 기능"
+                      description: "이메일 기반 회원가입 및 OAuth 소셜 로그인 지원"
+                      priority: "Medium"
+      responses:
+        '200':
+          description: "생성된 테스트케이스 리스트"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestcaseDefinition'
+              examples:
+                success:
+                  summary: "테스트케이스 생성 성공 예시"
+                  value:
+                    testcases:
+                      - id: "TC-001"
+                        requirement_id: "REQ-001"
+                        steps:
+                          - "로그인 페이지 열기"
+                          - "이메일 입력"
+                          - "비밀번호 입력"
+                          - "로그인 버튼 클릭"
+                        expected_result: "메인 대시보드로 이동"
+                      - id: "TC-002"
+                        requirement_id: "REQ-002"
+                        steps:
+                          - "회원가입 페이지 열기"
+                          - "이메일 입력"
+                          - "비밀번호 입력"
+                          - "가입 버튼 클릭"
+                        expected_result: "회원 가입 완료 화면 표시"
+
 components:
   schemas:
     RequirementAgentInput:
       $ref: './schemas/requirement_agent_input.json'
     RequirementDefinition:
       $ref: './schemas/requirement_agent_output.json'
+    TestcaseAgentInput:
+      $ref: './schemas/testcase_agent_input.json'
+    TestcaseDefinition:
+      $ref: './schemas/testcase_agent_output.json'
