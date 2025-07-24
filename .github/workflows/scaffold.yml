@@ -4,13 +4,19 @@ name: Scaffold AAWGA Structure
 on:
   workflow_dispatch:
 
+# 리포지토리 컨텐츠 수정·푸시를 위한 권한 부여
+permissions:
+  contents: write
+
 jobs:
   scaffold:
     runs-on: ubuntu-latest
 
     steps:
-      # 레포 클론
+      # 레포 클론 및 토큰 정보 로컬 git에 저장
       - uses: actions/checkout@v3
+        with:
+          persist-credentials: true
 
       # 폴더·파일 생성
       - name: Create directory structure
@@ -60,10 +66,8 @@ jobs:
           touch AAWGA/requirements.txt
           touch AAWGA/README.md
 
-      # 커밋 & 푸시
+      # 변경 커밋 & 메인 브랜치에 푸시
       - name: Commit and push changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
