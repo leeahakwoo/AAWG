@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TraceabilityAgentInput",
+  "type": "object",
+  "properties": {
+    "requirements": {
+      "type": "array",
+      "description": "요구사항 목록",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "priority": {
+            "type": "string",
+            "enum": ["High", "Medium", "Low"]
+          }
+        },
+        "required": ["id", "title", "description"]
+      }
+    },
+    "testcases": {
+      "type": "array",
+      "description": "테스트케이스 목록",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "requirement_id": { "type": "string" },
+          "steps": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "expected_result": { "type": "string" }
+        },
+        "required": ["id", "requirement_id", "steps", "expected_result"]
+      }
+    }
+  },
+  "required": ["requirements", "testcases"]
+}
