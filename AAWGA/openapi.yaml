@@ -13,20 +13,31 @@ paths:
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/RequirementAgentInput'
+            examples:
+              sample-upload:
+                summary: "사업계획서 파일 업로드 예시"
+                value:
+                  business_plan: "(binary plan.pptx)"
       responses:
         '200':
           description: "추출된 요구사항 리스트"
           content:
             application/json:
-           schema:
-              $ref: '#/components/schemas/RequirementAgentInput'
-            examples:
-              sample-upload:
-                summary: "사업계획서 파일 업로드 예시"
-                value:
-                  # 실제 바이너리는 업로드 시 multipart로 전송되므로,
-                  # Swagger UI 에선 "(binary plan.pptx)"로만 표시됩니다.
-                  business_plan: "(binary plan.pptx)"
+              schema:
+                $ref: '#/components/schemas/RequirementDefinition'
+              examples:
+                success:
+                  summary: "요구사항 추출 성공 예시"
+                  value:
+                    requirements:
+                      - id: "REQ-001"
+                        title: "유저 로그인 기능"
+                        description: "이메일/비밀번호를 통한 로그인 지원"
+                        priority: "High"
+                      - id: "REQ-002"
+                        title: "회원가입 기능"
+                        description: "이메일 기반 회원가입 및 OAuth 소셜 로그인 지원"
+                        priority: "Medium"
 
 components:
   schemas:
