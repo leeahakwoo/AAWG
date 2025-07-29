@@ -1,27 +1,35 @@
-# backend/app.py
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from agents.langgraph_dynamic import graph
 
-from fastapi import FastAPI
-from backend.routers import requirements, testcases, traceability
+app = FastAPI()
 
-app = FastAPI(
-    title="AAWGA Agent API",
-    version="1.0.0",
-    description="요구사항·테스트케이스·추적성 Agent API"
-)
+class RunRequest(BaseModel):
+    instruction: str
+    content: str
 
-# 각 라우터 파일에서 FastAPI Router 인스턴스를 `router`로 export했다고 가정합니다.
-app.include_router(
-    requirements.router,
-    prefix="/requirements",
-    tags=["requirements"]
-)
-app.include_router(
-    testcases.router,
-    prefix="/testcases",
-    tags=["testcases"]
-)
-app.include_router(
-    traceability.router,
-    prefix="/traceability",
-    tags=["traceability"]
-)
+class RunResponse(BaseModel):
+    requirements: list[str]
+    testcases: list[str]
+    traceability: list[str]
+
+@app.post("/run", response_model=RunResponse)
+def run_workflow(req: RunRequest):
+    """
+    instruction에 따라 필요한 에이전트를 호출하여 결과를 반환합니다.
+    """
+    try:
+        # LangGraph 동적 워크플로우 실행
+        output = graph.invoke({
+            "instruction": req.instruction,
+            "content": req.content
+        })
+        # 필요한 키가 없다면 빈 리스트로 보장
+        return {
+            "requirements": output.get("requirements", []),
+            "testcases": output.get("testcases", []),
+            "traceability": output.get("traceability", [])
+        }
+    except Exception as e:
+        # 내부 오류는 HTTP 500로 반환
+        raise HTTPException(status_code=500, detail=str(e))
