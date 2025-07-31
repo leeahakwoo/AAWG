@@ -3,7 +3,7 @@
 import os
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
-from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain_community.embeddings import OpenAIEmbeddings
 
 __all__ = ["save_to_vectorstore", "search_documents"]
 
