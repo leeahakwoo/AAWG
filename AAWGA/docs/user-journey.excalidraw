@@ -1,0 +1,99 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "type": "rectangle",
+      "x": 100,
+      "y": 100,
+      "width": 120,
+      "height": 60,
+      "text": "사용자\n문서 업로드",
+      "fontSize": 14,
+      "fillColor": "#e1f5fe"
+    },
+    {
+      "type": "rectangle",
+      "x": 300,
+      "y": 100,
+      "width": 120,
+      "height": 60,
+      "text": "작업 선택\n(요구사항/테스트케이스/추적성)",
+      "fontSize": 12,
+      "fillColor": "#f3e5f5"
+    },
+    {
+      "type": "rectangle",
+      "x": 500,
+      "y": 100,
+      "width": 120,
+      "height": 60,
+      "text": "AI 에이전트\n실행",
+      "fontSize": 14,
+      "fillColor": "#fff3e0"
+    },
+    {
+      "type": "rectangle",
+      "x": 700,
+      "y": 100,
+      "width": 120,
+      "height": 60,
+      "text": "결과\n표시",
+      "fontSize": 14,
+      "fillColor": "#e8f5e8"
+    },
+    {
+      "type": "arrow",
+      "x": 220,
+      "y": 130,
+      "width": 80,
+      "height": 0
+    },
+    {
+      "type": "arrow",
+      "x": 420,
+      "y": 130,
+      "width": 80,
+      "height": 0
+    },
+    {
+      "type": "arrow",
+      "x": 620,
+      "y": 130,
+      "width": 80,
+      "height": 0
+    },
+    {
+      "type": "text",
+      "x": 250,
+      "y": 80,
+      "text": "1. 문서 전송",
+      "fontSize": 10
+    },
+    {
+      "type": "text",
+      "x": 450,
+      "y": 80,
+      "text": "2. 지시사항 전달",
+      "fontSize": 10
+    },
+    {
+      "type": "text",
+      "x": 650,
+      "y": 80,
+      "text": "3. AI 처리",
+      "fontSize": 10
+    },
+    {
+      "type": "text",
+      "x": 850,
+      "y": 80,
+      "text": "4. 결과 확인",
+      "fontSize": 10
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff"
+  }
+} 

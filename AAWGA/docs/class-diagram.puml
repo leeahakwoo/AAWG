@@ -1,0 +1,114 @@
+@startuml AAWGA Class Diagram
+
+!theme plain
+skinparam classAttributeIconSize 0
+skinparam classFontSize 12
+skinparam classFontName Arial
+
+package "Frontend Layer" {
+    class StreamlitApp {
+        +main()
+        +upload_document()
+        +select_workflow()
+        +display_results()
+    }
+}
+
+package "Backend Layer" {
+    class FastAPIServer {
+        +app: FastAPI
+        +run_workflow()
+        +handle_request()
+        +format_response()
+    }
+    
+    class RunRequest {
+        +instruction: str
+        +content: str
+    }
+    
+    class RunResponse {
+        +requirements: List[str]
+        +testcases: List[str]
+        +traceability: List[Dict]
+    }
+}
+
+package "AI Agent Layer" {
+    class StateGraph {
+        +entry: function
+        +state()
+        +set_entry_point()
+        +compile()
+    }
+    
+    class DynamicWorkflow {
+        +dynamic_invoke()
+        +conditional_execution()
+        +data_flow()
+    }
+    
+    class RequirementAgent {
+        +generate_requirements()
+        +rag_search()
+        +llm_generation()
+    }
+    
+    class TestcaseAgent {
+        +generate_testcases()
+        +analyze_requirements()
+        +create_test_scenarios()
+    }
+    
+    class TraceabilityAgent {
+        +generate_traceability()
+        +map_requirements_testcases()
+        +create_matrix()
+    }
+}
+
+package "Data Layer" {
+    class VectorStore {
+        +faiss_index
+        +embeddings
+        +similarity_search()
+        +store_documents()
+    }
+    
+    class RAGService {
+        +text_splitter
+        +embeddings
+        +vectorstore
+        +retrieve_context()
+    }
+}
+
+package "External Services" {
+    class OpenAIAPI {
+        +api_key: str
+        +chat_model
+        +embeddings_model
+        +generate_response()
+    }
+}
+
+' Relationships
+StreamlitApp --> FastAPIServer : HTTP requests
+FastAPIServer --> StateGraph : workflow execution
+StateGraph --> DynamicWorkflow : orchestrates
+DynamicWorkflow --> RequirementAgent : conditional
+DynamicWorkflow --> TestcaseAgent : conditional
+DynamicWorkflow --> TraceabilityAgent : conditional
+
+RequirementAgent --> RAGService : uses
+RequirementAgent --> OpenAIAPI : calls
+TestcaseAgent --> OpenAIAPI : calls
+TraceabilityAgent --> OpenAIAPI : calls
+
+RAGService --> VectorStore : manages
+RAGService --> OpenAIAPI : embeddings
+
+RunRequest --> FastAPIServer : input
+FastAPIServer --> RunResponse : output
+
+@enduml 
