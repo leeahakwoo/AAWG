@@ -7,3 +7,9 @@ langchain
 langgraph
 pydantic
 requests
+pymongo>=4.0.0
+motor>=3.7.0
+python-multipart
+langchain-community
+langchain-openai
+faiss-cpu
