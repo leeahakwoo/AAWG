@@ -24,8 +24,11 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
-        working-directory: AAWGA  # ✅ 실제 requirements.txt 경로 지정
+        working-directory: AAWGA
+
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$(pwd)/AAWGA" >> $GITHUB_ENV
 
       - name: Run tests with pytest
         run: pytest
-        working-directory: AAWGA  # ✅ 테스트도 동일 디렉토리에서 실행
+        working-directory: AAWGA
