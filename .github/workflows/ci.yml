@@ -26,5 +26,6 @@ jobs:
         run: pip install -r AAWGA/requirements.txt
 
       - name: Run tests with pytest
-        working-directory: AAWGA
-        run: pytest --maxfail=1 --disable-warnings -q
+        run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)/AAWGA
+          pytest AAWGA --maxfail=1 --disable-warnings -q
