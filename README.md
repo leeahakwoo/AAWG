@@ -2,8 +2,7 @@
 
 AAWGA는 사용자가 업로드한 다양한 형식의 문서를 자동으로 파싱·처리하고, RAG(Retrieval-Augmented Generation) 기법을 통해 핵심 정보를 확보하여 요구사항, 테스트케이스, 추적성 매트릭스를 자동으로 생성하는 AI 에이전트입니다. 이 프로젝트는 소프트웨어 개발 전 과정을 지원하여 생산성과 품질을 극대화하는 것을 목표로 합니다.
 
-**GitHub Repository:** [https://github.com/leeahakwoo/AAWG](https://github.com/leeahakwoo/AAWG) fileciteturn0file4
-
+**GitHub Repository:** [https://github.com/leeahakwoo/AAWG](https://github.com/leeahakwoo/AAWG) 
 ---
 
 ## 핵심 기능
@@ -22,16 +21,17 @@ AAWGA는 사용자가 업로드한 다양한 형식의 문서를 자동으로 �
 
 프로젝트는 4계층 아키텍처로 구성됩니다:
 
-1. **플랫폼 레벨**: Streamlit Cloud (프론트엔드), FastAPI 백엔드, LangChain Agent Manager, MongoDB Atlas, FAISS/외부 벡터 DB  fileciteturn0file3
+1. **플랫폼 레벨**: Streamlit Cloud (프론트엔드), FastAPI 백엔드, LangChain Agent Manager, MongoDB Atlas, FAISS/외부 벡터 DB  
+
 2. **모듈 레벨**:
 
-   * `streamlit_app/`: UI 및 사용자 인터랙션 (업로드, 피드백 폼)  fileciteturn0file1
+   * `streamlit_app/`: UI 및 사용자 인터랙션 (업로드, 피드백 폼)  
    * `backend/`: FastAPI 앱 및 RAG 서비스 (`app.py`, `routers/`, `services/rag_search.py`)
    * `agents/`: 요구사항·테스트케이스·추적성 생성 에이전트
    * `models/`: Pydantic 스키마 및 MongoDB 스키마
    * `scripts/`: Docker 및 배포 스크립트
-3. **플로우 레벨**: 문서 파싱 → 청킹 → 임베딩 → 벡터 검색 → 에이전트 초기화 → 실행  fileciteturn0file3
-4. **하위 컴포넌트**: 파일 리더, 텍스트 스플리터, Embeddings, VectorStore, PromptTemplates, Tool Wrappers, Agent Runner  fileciteturn0file3
+3. **플로우 레벨**: 문서 파싱 → 청킹 → 임베딩 → 벡터 검색 → 에이전트 초기화 → 실행  
+4. **하위 컴포넌트**: 파일 리더, 텍스트 스플리터, Embeddings, VectorStore, PromptTemplates, Tool Wrappers, Agent Runner  
 
 ---
 
@@ -89,7 +89,7 @@ AAWGA는 사용자가 업로드한 다양한 형식의 문서를 자동으로 �
 * Auth0/Firebase 인증·권한 관리 추가
 * 템플릿 CRUD UI/UX 개선 및 피드백 루프 구축
 * CI/CD 파이프라인 및 컨테이너화 완성
-* 성능 최적화 및 모니터링 통합  fileciteturn0file3
+* 성능 최적화 및 모니터링 통합  
 
 ---
 
