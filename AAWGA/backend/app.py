@@ -1,8 +1,17 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from agents.langgraph_dynamic import graph
+from backend.routers import templates, feedback
+import uvicorn
 
-app = FastAPI()
+app = FastAPI(title="AAWGA API", version="1.0.0")
+
+# 라우터 등록
+app.include_router(templates.router)
+app.include_router(feedback.router)
 
 class RunRequest(BaseModel):
     instruction: str
@@ -14,7 +23,7 @@ class RunResponse(BaseModel):
     traceability: list[str]
 
 @app.post("/run", response_model=RunResponse)
-def run_workflow(req: RunRequest):
+async def run_workflow(req: RunRequest):
     """
     instruction에 따라 필요한 에이전트를 호출하여 결과를 반환합니다.
     """
@@ -33,3 +42,10 @@ def run_workflow(req: RunRequest):
     except Exception as e:
         # 내부 오류는 HTTP 500로 반환
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/")
+async def root():
+    return {"message": "AAWGA API is running"}
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
