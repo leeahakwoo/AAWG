@@ -1,0 +1,15 @@
+/* 버튼 기본 스타일 제거 + 커서 */
+.toolbar-plugin button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 호버 시 살짝 배경 */
+.toolbar-plugin button:hover {
+  background: #f0f0f0;
+}

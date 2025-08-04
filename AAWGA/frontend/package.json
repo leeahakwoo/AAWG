@@ -1,0 +1,54 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@lexical/react": "^0.33.1",
+    "font-awesome": "^4.7.0",
+    "lexical": "^0.33.1",
+    "lucide-react": "^0.536.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "serve:prod": "serve -s build -l 5000",
+    "analyze": "react-app-rewired build",
+    "test": "react-scripts test --env=jsdom --watchAll=false",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.4",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^30.0.0",
+    "jest": "^27.5.1",
+    "puppeteer": "^21.0.1",
+    "serve": "^14.2.0",
+    "react-app-rewired": "^2.2.1",
+    "source-map-explorer": "^2.5.2",
+    "webpack-bundle-analyzer": "^4.8.0"
+  }
+}
